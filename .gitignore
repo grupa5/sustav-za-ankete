@@ -1,0 +1,73 @@
+# =====================================================================
+#  .gitignore – JEDAN, u korijenu repozitorija. Vrijedi za SVE podfoldere.
+#  (Ova datoteka se kopira u repo kao ".gitignore".)
+#
+#  Pravila pisanja:
+#   - uzorak BEZ "/" na početku vrijedi na bilo kojoj dubini:  bin/  -> backend/src/X/bin/, tests/Y/bin/ ...
+#   - uzorak S "/" na početku vrijedi samo u korijenu:          /publish/
+#   - "**/" eksplicitno znači "u bilo kojem podfolderu"
+#   - "!" vraća iznimku:                                         !.env.example
+#  Provjera zašto se datoteka ignorira:  git check-ignore -v <putanja>
+# =====================================================================
+
+# ---------- Tajne i lokalna konfiguracija (bilo gdje) ----------
+.env
+.env.*
+!.env.example
+*.pfx
+*.pem
+*.key
+appsettings.*.local.json
+**/Properties/launchSettings.local.json
+secrets.json
+
+# ---------- .NET 10 ----------
+bin/
+obj/
+*.user
+*.suo
+*.rsuser
+TestResults/
+coverage/
+*.coverage
+*.trx
+/publish/
+**/out/
+
+# ---------- Node / React (Vite) ----------
+node_modules/
+dist/
+dist-ssr/
+.vite/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---------- IDE i OS ----------
+.vs/
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- Docker / Podman ----------
+# compose.yaml i Dockerfile SE commitaju; lokalni override ne:
+compose.override.yaml
+docker-compose.override.yml
+# lokalni bind-mount podaci baze (ako netko koristi bind mount umjesto named volumea)
+/.data/
+
+# ---------- Logovi ----------
+*.log
+logs/
+
+# ---------- Claude Code ----------
+# .claude/agents/ i .claude/settings.json SE commitaju (zajednički agenti i pravila);
+# osobne postavke ne:
+.claude/settings.local.json
